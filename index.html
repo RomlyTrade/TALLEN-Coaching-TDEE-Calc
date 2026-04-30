@@ -1,0 +1,380 @@
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+--bg: #ffffff;
+--surface: #f4f7fb;
+--surface2: #e8f0fe;
+--border: #d0e0f5;
+--accent: #007BFF;
+--accent2: #0056cc;
+--text: #000000;
+--muted: #5a7a9a;
+--danger: #cc2200;
+}
+
+.tdee-wrapper * { box-sizing: border-box; margin: 0; padding: 0; }
+
+.tdee-wrapper {
+background: var(--bg);
+color: var(--text);
+font-family: 'DM Sans', sans-serif;
+padding: 20px;
+}
+
+.container {
+max-width: 680px;
+margin: 0 auto;
+}
+
+header { margin-bottom: 48px; }
+
+.label-tag {
+display: inline-block;
+background: var(--accent);
+color: #fff;
+font-size: 11px;
+font-weight: 700;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+padding: 4px 10px;
+border-radius: 2px;
+margin-bottom: 16px;
+}
+
+h1 {
+font-family: 'Bebas Neue', sans-serif;
+font-size: clamp(52px, 10vw, 88px);
+line-height: 0.95;
+letter-spacing: 0.01em;
+color: var(--text);
+margin-bottom: 14px;
+}
+
+h1 span { color: var(--accent); }
+
+header p {
+color: var(--muted);
+font-size: 15px;
+line-height: 1.6;
+max-width: 480px;
+}
+
+.card {
+background: var(--surface);
+border: 1px solid var(--border);
+border-radius: 12px;
+padding: 28px;
+margin-bottom: 16px;
+}
+
+.card-title {
+font-family: 'Bebas Neue', sans-serif;
+font-size: 22px;
+letter-spacing: 0.05em;
+color: var(--muted);
+margin-bottom: 20px;
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+.card-title::after {
+content: '';
+flex: 1;
+height: 1px;
+background: var(--border);
+}
+
+.toggle-group {
+display: flex;
+background: var(--surface2);
+border-radius: 8px;
+padding: 4px;
+gap: 4px;
+margin-bottom: 24px;
+}
+
+.toggle-btn {
+flex: 1;
+padding: 10px;
+border: none;
+background: transparent;
+color: var(--muted);
+font-family: 'DM Sans', sans-serif;
+font-size: 14px;
+font-weight: 500;
+border-radius: 6px;
+cursor: pointer;
+transition: all 0.2s;
+}
+
+.toggle-btn.active {
+background: var(--accent);
+color: #fff;
+}
+
+.field-row {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 14px;
+margin-bottom: 14px;
+}
+
+.field { display: flex; flex-direction: column; gap: 8px; }
+.field.full { grid-column: 1 / -1; }
+
+label {
+font-size: 12px;
+font-weight: 600;
+letter-spacing: 0.08em;
+text-transform: uppercase;
+color: var(--muted);
+}
+
+.input-wrap { position: relative; }
+
+input[type="number"] {
+width: 100%;
+background: var(--surface2);
+border: 1px solid var(--border);
+border-radius: 8px;
+padding: 13px 46px 13px 16px;
+color: var(--text);
+font-family: 'DM Sans', sans-serif;
+font-size: 16px;
+font-weight: 500;
+outline: none;
+-moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+
+.unit {
+position: absolute;
+right: 14px;
+top: 50%;
+transform: translateY(-50%);
+font-size: 12px;
+font-weight: 600;
+color: var(--muted);
+pointer-events: none;
+}
+
+select {
+width: 100%;
+background: var(--surface2);
+border: 1px solid var(--border);
+border-radius: 8px;
+padding: 13px 16px;
+color: var(--text);
+font-family: 'DM Sans', sans-serif;
+font-size: 15px;
+font-weight: 500;
+outline: none;
+cursor: pointer;
+appearance: none;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+background-repeat: no-repeat;
+background-position: right 14px center;
+}
+
+.calculate-btn {
+width: 100%;
+padding: 18px;
+background: var(--accent);
+color: #fff;
+border: none;
+border-radius: 10px;
+font-family: 'Bebas Neue', sans-serif;
+font-size: 22px;
+letter-spacing: 0.12em;
+cursor: pointer;
+transition: all 0.2s;
+margin-top: 8px;
+}
+
+.results { display: none; animation: slideUp 0.4s ease; }
+.results.visible { display: block; }
+
+@keyframes slideUp {
+from { opacity: 0; transform: translateY(20px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+.tdee-hero {
+background: linear-gradient(135deg, #e8f3ff 0%, #f0f7ff 100%);
+border: 1px solid var(--accent);
+border-radius: 12px;
+padding: 32px 28px;
+margin-bottom: 16px;
+text-align: center;
+}
+
+.tdee-value {
+font-family: 'Bebas Neue', sans-serif;
+font-size: 80px;
+line-height: 1;
+color: var(--accent);
+}
+
+.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+.stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px; }
+.stat-value { font-family: 'Bebas Neue', sans-serif; font-size: 34px; color: var(--text); }
+
+.bulk-targets { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 16px; }
+.bulk-row { display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; border-bottom: 1px solid var(--border); }
+.bulk-row-val { font-family: 'Bebas Neue', sans-serif; font-size: 22px; }
+
+.error-msg { display: none; background: #ffebeb; border: 1px solid var(--danger); color: var(--danger); border-radius: 8px; padding: 12px 16px; margin-bottom: 12px; }
+.error-msg.visible { display: block; }
+
+@media (max-width: 480px) {
+.field-row, .stats-grid { grid-template-columns: 1fr; }
+.tdee-value { font-size: 60px; }
+}
+</style>
+
+<div class="tdee-wrapper">
+<div class="container">
+<header>
+<div class="label-tag">Nutrition Tool</div>
+<h1>TDEE<br><span>Calculator</span></h1>
+<p>Find your Total Daily Energy Expenditure. Build from here.</p>
+</header>
+
+<div class="card">
+<div class="card-title">Your Details</div>
+<div class="toggle-group">
+<button class="toggle-btn active" onclick="setUnits('metric', event)">Metric (kg / cm)</button>
+<button class="toggle-btn" onclick="setUnits('imperial', event)">Imperial (lbs / ft)</button>
+</div>
+
+<div class="field" style="margin-bottom:14px;">
+<label>Biological Sex</label>
+<select id="sex">
+<option value="male">Male</option>
+<option value="female">Female</option>
+</select>
+</div>
+
+<div class="field-row">
+<div class="field">
+<label>Age</label>
+<div class="input-wrap"><input type="number" id="age" placeholder="25"><span class="unit">yrs</span></div>
+</div>
+<div class="field">
+<label>Weight</label>
+<div class="input-wrap"><input type="number" id="weight" placeholder="75"><span class="unit" id="weight-unit">kg</span></div>
+</div>
+<div class="field" id="height-metric">
+<label>Height</label>
+<div class="input-wrap"><input type="number" id="height-cm" placeholder="175"><span class="unit">cm</span></div>
+</div>
+<div class="field" id="height-imperial" style="display:none;">
+<label>Height</label>
+<div style="display:flex;gap:8px;">
+<div class="input-wrap" style="flex:1"><input type="number" id="height-ft" placeholder="5"><span class="unit">ft</span></div>
+<div class="input-wrap" style="flex:1"><input type="number" id="height-in" placeholder="10"><span class="unit">in</span></div>
+</div>
+</div>
+<div class="field">
+<label>Body Fat %</label>
+<div class="input-wrap"><input type="number" id="bf" placeholder="15"><span class="unit">%</span></div>
+</div>
+</div>
+
+<div class="field" style="margin-bottom:20px;">
+<label>Activity Level</label>
+<select id="activity">
+<option value="1.2">Sedentary</option>
+<option value="1.375">Lightly active</option>
+<option value="1.55" selected>Moderately active</option>
+<option value="1.725">Very active</option>
+<option value="1.9">Extremely active</option>
+</select>
+</div>
+
+<div class="error-msg" id="error-msg">⚠ Please fill in age, weight, and height.</div>
+<button class="calculate-btn" onclick="calculate()">CALCULATE MY TDEE</button>
+</div>
+
+<div class="results" id="results">
+<div class="tdee-hero">
+<div style="font-size:12px;font-weight:700;color:var(--accent);text-transform:uppercase;">Maintenance Calories</div>
+<div class="tdee-value" id="tdee-display">—</div>
+</div>
+
+<div class="stats-grid">
+<div class="stat-card">
+<div style="font-size:11px;font-weight:700;color:var(--muted);">BMR (REST)</div>
+<div class="stat-value" id="bmr-display">—</div>
+</div>
+<div class="stat-card">
+<div style="font-size:11px;font-weight:700;color:var(--muted);">LEAN MASS</div>
+<div class="stat-value" id="lbm-display">—</div>
+</div>
+</div>
+
+<div class="bulk-targets">
+<div class="bulk-row"><span>Conservative (+200)</span><span class="bulk-row-val" id="bulk-low" style="color:var(--accent)">—</span></div>
+<div class="bulk-row"><span>Recommended (+300)</span><span class="bulk-row-val" id="bulk-mid" style="color:var(--accent)">—</span></div>
+<div class="bulk-row"><span>Aggressive (+500)</span><span class="bulk-row-val" id="bulk-high" style="color:var(--accent2)">—</span></div>
+</div>
+</div>
+</div>
+</div>
+
+<script>
+let currentUnits = 'metric';
+
+function setUnits(units, e) {
+currentUnits = units;
+document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+e.target.classList.add('active');
+const isImp = units === 'imperial';
+document.getElementById('weight-unit').textContent = isImp ? 'lbs' : 'kg';
+document.getElementById('height-metric').style.display = isImp ? 'none' : 'block';
+document.getElementById('height-imperial').style.display = isImp ? 'block' : 'none';
+}
+
+function calculate() {
+const age = parseFloat(document.getElementById('age').value);
+const activity = parseFloat(document.getElementById('activity').value);
+const sex = document.getElementById('sex').value;
+const bf = parseFloat(document.getElementById('bf').value);
+let weight = parseFloat(document.getElementById('weight').value);
+if (currentUnits === 'imperial') weight *= 0.453592;
+
+let height;
+if (currentUnits === 'metric') {
+height = parseFloat(document.getElementById('height-cm').value);
+} else {
+height = (parseFloat(document.getElementById('height-ft').value) * 12 + parseFloat(document.getElementById('height-in').value)) * 2.54;
+}
+
+if (!age || !weight || !height) {
+document.getElementById('error-msg').classList.add('visible');
+return;
+}
+document.getElementById('error-msg').classList.remove('visible');
+
+let bmr = (sex === 'male') ? (10 * weight + 6.25 * height - 5 * age + 5) : (10 * weight + 6.25 * height - 5 * age - 161);
+const tdee = Math.round(bmr * activity);
+
+document.getElementById('tdee-display').textContent = tdee;
+document.getElementById('bmr-display').textContent = Math.round(bmr);
+document.getElementById('bulk-low').textContent = tdee + 200;
+document.getElementById('bulk-mid').textContent = tdee + 300;
+document.getElementById('bulk-high').textContent = tdee + 500;
+
+if (!isNaN(bf) && bf > 0) {
+let lbm = weight * (1 - (bf/100));
+document.getElementById('lbm-display').textContent = currentUnits === 'imperial' ? (lbm/0.453592).toFixed(1) + ' lbs' : lbm.toFixed(1) + ' kg';
+}
+
+document.getElementById('results').classList.add('visible');
+}
+</script>
