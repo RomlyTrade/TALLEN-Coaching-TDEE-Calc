@@ -299,7 +299,8 @@ color: var(--accent);
 
 <div class="error-msg" id="error-msg">⚠ Please fill in age, weight, and height.</div>
 <button class="calculate-btn" onclick="calculate()">CALCULATE MY TDEE</button>
-</div>
+<a href="https://tallencoaching.com/" class="calculate-btn" style="background: var(--muted); margin-top: 12px; text-decoration: none; display: block; text-align: center;">Find Coaching</a>
+ </div>
 
 <div class="results" id="results">
 <div class="tdee-hero">
